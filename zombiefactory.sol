@@ -8,9 +8,11 @@ contract ZombieFactory {
   //Modulus operator (%) will be used to shorten the integer to 16 digits.
   uint dnaModulus = 10 ** dnaDigits;
 
-  struct Zombies {
+  struct Zombie {
     string name;
     uint dna;
   } //end struct zombies {}
 
+  //Creates a struct Zombie[] named 'zombies'
+  Zombie[] public zombies;
 }
