@@ -14,5 +14,6 @@ contract ZombieFactory {
   } //end struct zombies {}
 
   //Creates a struct Zombie[] named 'zombies'
+  //By having 'zombies' public, a getter is automatically created.
   Zombie[] public zombies;
 }
