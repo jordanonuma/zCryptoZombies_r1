@@ -16,4 +16,8 @@ contract ZombieFactory {
   //Creates a struct Zombie[] named 'zombies'
   //By having 'zombies' public, a getter is automatically created.
   Zombie[] public zombies;
+
+  function createZombie(string _name, uint _dna) {
+
+  }
 }
