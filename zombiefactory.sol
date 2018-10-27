@@ -13,11 +13,14 @@ contract ZombieFactory {
     uint dna;
   } //end struct zombies {}
 
-  //Creates a struct Zombie[] named 'zombies'
-  //By having 'zombies' public, a getter is automatically created.
+  //Creates a struct Zombie[] named 'zombies'.
+  //By having 'zombies' array public, a getter is automatically created.
   Zombie[] public zombies;
 
   function createZombie(string _name, uint _dna) {
 
+    //Creates a new Zombie struct.
+    //Adds the Zombie struct to array 'zombies'.
+    zombies.push.Zombie(_name, _dna);  //Replaces Zombie zombies = Zombie(_name, _dna); zombies.push(zombies);
   }
 }
