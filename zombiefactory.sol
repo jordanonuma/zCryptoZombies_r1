@@ -1,7 +1,6 @@
 pragma solidity ^0.4.25;
 
 contract ZombieFactory {
-
   //State variable will be permamently stored on-chain
   uint dnaDigits = 16;
   //To make sure our Zombie's DNA is only 16 characters, set 'dnaModulus' equal to 10^16.
@@ -17,10 +16,9 @@ contract ZombieFactory {
   //By having 'zombies' array public, a getter is automatically created.
   Zombie[] public zombies;
 
-  function createZombie(string _name, uint _dna) {
-
+  function _createZombie(string _name, uint _dna) private {
     //Creates a new Zombie struct.
     //Adds the Zombie struct to array 'zombies'.
     zombies.push.Zombie(_name, _dna);  //Replaces Zombie zombies = Zombie(_name, _dna); zombies.push(zombies);
-  }
+  } //end function createZombie()
 }
