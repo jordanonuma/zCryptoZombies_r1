@@ -21,4 +21,8 @@ contract ZombieFactory {
     //Adds the Zombie struct to array 'zombies'.
     zombies.push.Zombie(_name, _dna);  //Replaces Zombie zombies = Zombie(_name, _dna); zombies.push(zombies);
   } //end function createZombie()
-}
+
+  function _generateRandomDna(string _str) private view returns (uint) {
+
+  } //end function _generateRandomDna()
+} //end contract ZombieFactory{}
