@@ -23,6 +23,9 @@ contract ZombieFactory {
   } //end function createZombie()
 
   function _generateRandomDna(string _str) private view returns (uint) {
-
+    //Creates pseudorandom number from '_str' and with type uint.
+    uint rand = uint(keccak256(_str));
+    //Returns last 16 characters of 'rand' since dnaModulus = 10^16.
+    return rand % dnaModulus;
   } //end function _generateRandomDna()
 } //end contract ZombieFactory{}
