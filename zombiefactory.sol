@@ -28,4 +28,9 @@ contract ZombieFactory {
     //Returns last 16 characters of 'rand' since dnaModulus = 10^16.
     return rand % dnaModulus;
   } //end function _generateRandomDna()
+
+  function createRandomDna(string _name) public returns {
+    uint randomDna = _generateRandomDna(_name);
+    _createZombie(_name, randomDna);
+  } //end function createRandomDna()
 } //end contract ZombieFactory{}
