@@ -1,6 +1,8 @@
 pragma solidity ^0.4.25;
 
 contract ZombieFactory {
+
+  event NewZombie(uint zombieId, string name, uint dna);
   //State variable will be permamently stored on-chain
   uint dnaDigits = 16;
   //To make sure our Zombie's DNA is only 16 characters, set 'dnaModulus' equal to 10^16.
@@ -19,7 +21,11 @@ contract ZombieFactory {
   function _createZombie(string _name, uint _dna) private {
     //Creates a new Zombie struct.
     //Adds the Zombie struct to array 'zombies'.
-    zombies.push.Zombie(_name, _dna);  //Replaces Zombie zombies = Zombie(_name, _dna); zombies.push(zombies);
+    //array.push() returns a uint of the new length of the array. Since the first item in an array has index 0, array.push() - 1 will be the index of the zombie we just added.
+    uint id = zombies.push(Zombie(_name,_dna)) - 1; //Replaces Zombie zombies = Zombie(_name, _dna); zombies.push(zombies);
+    //Fires event NewZombie
+    NewZombie(zombieId, name, dna);
+
   } //end function createZombie()
 
   function _generateRandomDna(string _str) private view returns (uint) {
