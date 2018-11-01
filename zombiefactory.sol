@@ -24,7 +24,7 @@ contract ZombieFactory {
     //array.push() returns a uint of the new length of the array. Since the first item in an array has index 0, array.push() - 1 will be the index of the zombie we just added.
     uint id = zombies.push(Zombie(_name,_dna)) - 1; //Replaces Zombie zombies = Zombie(_name, _dna); zombies.push(zombies);
     //Fires event NewZombie
-    NewZombie(zombieId, name, dna);
+    NewZombie(id, _name, _dna);
 
   } //end function createZombie()
 
