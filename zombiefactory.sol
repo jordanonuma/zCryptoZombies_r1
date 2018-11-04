@@ -18,6 +18,9 @@ contract ZombieFactory {
   //By having 'zombies' array public, a getter is automatically created.
   Zombie[] public zombies;
 
+  mapping (uint => address) public zombieToOwner;
+  mapping (address => uint) ownerZombieCount;
+
   function _createZombie(string _name, uint _dna) private {
     //Creates a new Zombie struct.
     //Adds the Zombie struct to array 'zombies'.
