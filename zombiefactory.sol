@@ -26,6 +26,10 @@ contract ZombieFactory {
     //Adds the Zombie struct to array 'zombies'.
     //array.push() returns a uint of the new length of the array. Since the first item in an array has index 0, array.push() - 1 will be the index of the zombie we just added.
     uint id = zombies.push(Zombie(_name, _dna)) - 1; //Replaces Zombie zombies = Zombie(_name, _dna) and zombies.push(zombies);
+
+    zombieToOwner[id] = msg.sender; //Assigns user based on global zombie id that is simply a global tally whenever a zombie is created.
+    ownerZombieCount++; //Increases user's zombie tally
+
     //Fires event NewZombie
     NewZombie(id, _name, _dna);
 
