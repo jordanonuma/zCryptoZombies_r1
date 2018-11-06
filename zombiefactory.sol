@@ -22,6 +22,8 @@ contract ZombieFactory {
   mapping (address => uint) ownerZombieCount;
 
   function _createZombie(string _name, uint _dna) private {
+    require(ownerZombieCount[msg.sender] == 0); //restricts users to creating one zombie each
+
     //Creates a new Zombie struct.
     //Adds the Zombie struct to array 'zombies'.
     //array.push() returns a uint of the new length of the array. Since the first item in an array has index 0, array.push() - 1 will be the index of the zombie we just added.
