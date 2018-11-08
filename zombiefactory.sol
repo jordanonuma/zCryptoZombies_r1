@@ -49,7 +49,3 @@ contract ZombieFactory {
     _createZombie(_name, randomDna);
   } //end function createRandomDna()
 } //end contract ZombieFactory{}
-
-contract ZombieFeeding is ZombieFactory {
-  
-} //end contract ZombieFeeding {}
