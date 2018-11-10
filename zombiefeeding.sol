@@ -11,7 +11,7 @@ contract ZombieFeeding is ZombieFactory {
 
       _targetDna = _targetDna % dnaModulus; //takes last 16 digits of _targetDna
       uint newDna = (myZombie.dna + _targetDna) / 2; //access 'myZombie' properties using 'myZombie.dna' or 'myZombie.name'
-      _createZombie("NoName", newDna);
+      _createZombie("NoName", newDna); //with require() will user be able to call function if they already have a zombie(s)
     } //end function feedAndMultiply()
 
 } //end contract ZombieFeeding {}
