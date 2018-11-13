@@ -18,15 +18,20 @@ contract KittyInterface {
 
 contract ZombieFeeding is ZombieFactory {
 
-    function feedAndMultiply(uint _zombieId, uint _targetDna) public {
-      require(msg.sender == zombieToOwner[_zombieId]);
+  address ckAddress = 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d; //Address of the cryptokitties contract
 
-      //Local 'Zombie' named 'myZombie' is a storage pointer indexed '_zombieId' in the 'zombies' array.
-      Zombie storage myZombie = zombies[_zombieId];
+  //Type of KittyInterface named 'kittyContract' is initialized with ckAddress--address of the cryptokitties contract.
+  KittyInterface kittyContract = KittyInterface(ckAddress);
 
-      _targetDna = _targetDna % dnaModulus; //takes last 16 digits of _targetDna
-      uint newDna = (myZombie.dna + _targetDna) / 2; //access 'myZombie' properties using 'myZombie.dna' or 'myZombie.name'
-      _createZombie("NoName", newDna); //with require() will user be able to call function if they already have a zombie(s)
-    } //end function feedAndMultiply()
+  function feedAndMultiply(uint _zombieId, uint _targetDna) public {
+    require(msg.sender == zombieToOwner[_zombieId]);
+
+    //Local 'Zombie' named 'myZombie' is a storage pointer indexed '_zombieId' in the 'zombies' array.
+    Zombie storage myZombie = zombies[_zombieId];
+
+    _targetDna = _targetDna % dnaModulus; //takes last 16 digits of _targetDna
+    uint newDna = (myZombie.dna + _targetDna) / 2; //access 'myZombie' properties using 'myZombie.dna' or 'myZombie.name'
+    _createZombie("NoName", newDna); //with require() will user be able to call function if they already have a zombie(s)
+  } //end function feedAndMultiply()
 
 } //end contract ZombieFeeding {}
