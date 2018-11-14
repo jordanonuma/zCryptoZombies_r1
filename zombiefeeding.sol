@@ -34,4 +34,10 @@ contract ZombieFeeding is ZombieFactory {
     _createZombie("NoName", newDna); //with require() will user be able to call function if they already have a zombie(s)
   } //end function feedAndMultiply()
 
+  function feedOnKitty(uint _zombieId, uint _kittyId) public {
+    uint kittyDna;
+    (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId); //calls the getKitty() function in kittyContract in type of KittyInterface named 'kittyContract'
+    feedAndMultiply(_zombieId, kittyDna);
+  } //end function feedOnKitty()
+
 } //end contract ZombieFeeding {}
