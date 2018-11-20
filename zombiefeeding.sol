@@ -24,7 +24,7 @@ contract ZombieFeeding is ZombieFactory {
   //Removing in favor of just declariying variable: KittyInterface kittyContract = KittyInterface(ckAddress);
   KittyInterface kittyContract;
 
-  function setKittyContractAddress(address _address) external {
+  function setKittyContractAddress(address _address) external onlyOwner {
     kittyContract = KittyInterface(_address);
   } //end function setyKittyContractAddress();
 
