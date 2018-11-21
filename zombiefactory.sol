@@ -13,6 +13,8 @@ contract ZombieFactory is Ownable {
   struct Zombie {
     string name;
     uint dna;
+    uint32 level; //specifying less than normal 256-bits and clustering two uint32 variables in the struct is more gas efficient than not).
+    uint32 readyTime;
   } //end struct zombies {}
 
   //Creates a struct Zombie[] named 'zombies'.
