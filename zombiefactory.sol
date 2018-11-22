@@ -9,6 +9,7 @@ contract ZombieFactory is Ownable {
   //To make sure our Zombie's DNA is only 16 characters, set 'dnaModulus' equal to 10^16.
   //Modulus operator (%) will be used to shorten the integer to 16 digits.
   uint dnaModulus = 10 ** dnaDigits;
+  uint cooldownnTime = 1 days; //Unix time requres the poor '1 days' grammar.
 
   struct Zombie {
     string name;
@@ -30,7 +31,8 @@ contract ZombieFactory is Ownable {
     //Creates a new Zombie struct.
     //Adds the Zombie struct to array 'zombies'.
     //array.push() returns a uint of the new length of the array. Since the first item in an array has index 0, array.push() - 1 will be the index of the zombie we just added.
-    uint id = zombies.push(Zombie(_name, _dna)) - 1; //Replaces Zombie zombies = Zombie(_name, _dna) and zombies.push(zombies);
+    uint id = zombies.push(Zombie(_name, _dna, 1, uint32(now + cooldownTime))) - 1; //Replaces Zombie zombies = Zombie(_name, _dna) and zombies.push(zombies);
+                                                                                    //'level' starts at '1'. uint32(now + cooldownTime) gives the unix time of 1 day from when the function is called.
 
     zombieToOwner[id] = msg.sender; //Assigns user based on global zombie id that is simply a global tally whenever a zombie is created.
     ownerZombieCount[msg.sender]++; //Increases user's zombie tally
