@@ -13,8 +13,8 @@ contract KittyInterface {
         uint256 sireId,
         uint256 generation,
         uint256 genes
-    );
-}
+    ); //end function getKitty()
+} //end contract KittyInterface{}
 
 contract ZombieFeeding is ZombieFactory {
 
@@ -26,11 +26,11 @@ contract ZombieFeeding is ZombieFactory {
 
   function setKittyContractAddress(address _address) external onlyOwner {
     kittyContract = KittyInterface(_address);
-  } //end function setyKittyContractAddress();
+  } //end function setyKittyContractAddress()
 
   function _triggerCooldown(Zombie storage _zombie) internal { //'_zombie' is a 'Zombie storage' pointer.
       _zombie.readyTime = uint32(now + cooldownTime);
-  } //end function _triggerCooldown();
+  } //end function _triggerCooldown()
 
   function _isReady(Zombie storage _zombie) internal view returns(bool) {
       return (_zombie.readyTime <= now);
