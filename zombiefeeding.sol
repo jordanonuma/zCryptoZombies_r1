@@ -36,11 +36,12 @@ contract ZombieFeeding is ZombieFactory {
       return (_zombie.readyTime <= now);
   } //end function _isReady();
 
-  function feedAndMultiply(uint _zombieId, uint _targetDna, string _species) public {
+  function feedAndMultiply(uint _zombieId, uint _targetDna, string _species) internal {
     require(msg.sender == zombieToOwner[_zombieId]);
 
     //Local 'Zombie' named 'myZombie' is a storage pointer indexed '_zombieId' in the 'zombies' array.
     Zombie storage myZombie = zombies[_zombieId];
+    require(_isReady(myZombie)); //This second require() only allows user to call function feedAndMultiply() if the zombie's cooldownTime is over.
 
     _targetDna = _targetDna % dnaModulus; //takes last 16 digits of _targetDna
     uint newDna = (myZombie.dna + _targetDna) / 2; //access 'myZombie' properties using 'myZombie.dna' or 'myZombie.name'
@@ -48,6 +49,8 @@ contract ZombieFeeding is ZombieFactory {
         newDna = newDna - newDna % 100 + 99; //replaces the last 2 digits of newDna with '99' to signify that new zombie came from a kitty
     }
     _createZombie("NoName", newDna); //with require() will user be able to call function if they already have a zombie(s)
+
+    _triggerCooldown(myZombie); //A zombie attack starts the cooldown timer.
   } //end function feedAndMultiply()
 
   function feedOnKitty(uint _zombieId, uint _kittyId) public {
