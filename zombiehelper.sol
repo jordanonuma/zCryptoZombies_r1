@@ -18,4 +18,8 @@ contract ZombieHelper is ZombieFeeding {
     require(msg.sender == zombieToOwner[_zombieId]);
     zombies[_zombieId].dna = _newDna;
   } //end function changeDna()
+
+  function getZombiesByOwner(address _owner) external view returns(uint[]) { //_view_ functions are only gas-free when viewed externally. If the _view_ function calls _non-view_ function 2(), function 2() will still use gas.
+  
+  } //end function getZombiesByOwner()
 } //end contract ZombieHelper{}
