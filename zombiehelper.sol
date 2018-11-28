@@ -20,6 +20,7 @@ contract ZombieHelper is ZombieFeeding {
   } //end function changeDna()
 
   function getZombiesByOwner(address _owner) external view returns(uint[]) { //_view_ functions are only gas-free when viewed externally. If the _view_ function calls _non-view_ function 2(), function 2() will still use gas.
-  
+    uint[] memory result = new uint[](ownerZombieCount[_owner]);
+    return result;
   } //end function getZombiesByOwner()
 } //end contract ZombieHelper{}
