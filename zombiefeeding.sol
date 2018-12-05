@@ -24,7 +24,7 @@ contract ZombieFeeding is ZombieFactory {
   //Removing in favor of just declariying variable: KittyInterface kittyContract = KittyInterface(ckAddress);
   KittyInterface kittyContract;
 
-  modifier onlyOwner(uint _zombieId) {
+  modifier ownerOf(uint _zombieId) {
     require(msg.sender == zombieToOwner[_zombieId]);
     _;
   } //end modifier onlyOwner()
@@ -41,7 +41,7 @@ contract ZombieFeeding is ZombieFactory {
       return (_zombie.readyTime <= now);
   } //end function _isReady();
 
-  function feedAndMultiply(uint _zombieId, uint _targetDna, string _species) internal onlyOwner(_zombieId) {
+  function feedAndMultiply(uint _zombieId, uint _targetDna, string _species) internal ownerOf(_zombieId) {
     //Local 'Zombie' named 'myZombie' is a storage pointer indexed '_zombieId' in the 'zombies' array.
     Zombie storage myZombie = zombies[_zombieId];
     require(_isReady(myZombie)); //This second require() only allows user to call function feedAndMultiply() if the zombie's cooldownTime is over.
