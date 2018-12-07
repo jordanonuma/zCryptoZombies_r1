@@ -16,6 +16,8 @@ contract ZombieFactory is Ownable {
     uint dna;
     uint32 level; //specifying less than normal 256-bits and clustering two uint32 variables in the struct is more gas efficient than not).
     uint32 readyTime;
+    uint16 winCount;
+    uint16 lossCount; //uint16 provides 2^16 = 65,536 slots. 2^8 only provides 256 slots.
   } //end struct zombies {}
 
   //Creates a struct Zombie[] named 'zombies'.
@@ -31,7 +33,7 @@ contract ZombieFactory is Ownable {
     //Creates a new Zombie struct.
     //Adds the Zombie struct to array 'zombies'.
     //array.push() returns a uint of the new length of the array. Since the first item in an array has index 0, array.push() - 1 will be the index of the zombie we just added.
-    uint id = zombies.push(Zombie(_name, _dna, 1, uint32(now + cooldownTime))) - 1; //Replaces Zombie zombies = Zombie(_name, _dna) and zombies.push(zombies);
+    uint id = zombies.push(Zombie(_name, _dna, 1, uint32(now + cooldownTime), 0, 0)) - 1; //Replaces Zombie zombies = Zombie(_name, _dna) and zombies.push(zombies);
                                                                                     //'level' starts at '1'. uint32(now + cooldownTime) gives the unix time of 1 day from when the function is called.
 
     zombieToOwner[id] = msg.sender; //Assigns user based on global zombie id that is simply a global tally whenever a zombie is created.
