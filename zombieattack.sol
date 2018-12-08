@@ -15,6 +15,13 @@ contract ZombieAttack is ZombieHelper {
     Zombie storage myZombie = zombies[_zombieId];
     Zombie storage enemyZombie = zombies[_targetId];
     uint rand = randMod(100); //function randMod(100) will output pseudorandom number between 0 and 99.
+
+    if (rand < attackVictoryProbability) {
+      myZombie.winCount++;
+      myZombie.level++;
+      enemyZombie.lossCount++;
+      feedAndMultiply(_zombieId, enemyZombie.dna, "species");
+    }
   } //end function attack()
 
 } //end contract ZombieAttack {}
