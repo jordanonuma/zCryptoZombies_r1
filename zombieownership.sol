@@ -3,11 +3,11 @@ import "./zombieattack.sol";
 import "./erc721.sol";
 
 contract ZombieOwnership is ZombieAttack, ERC721 {
-    function balanceOf(address _owner) external view returns (uint256 _balance) {
-
+    function balanceOf(address _owner) external view returns (uint256) {
+      return ownerZombieCount[_owner];
     } //end function balanceOf()
 
-    function ownerOf(uint256 _tokenId) external view returns (address _owner) {
-
+    function ownerOf(uint256 _tokenId) external view returns (address) {
+      return zombieToOwner[_tokenId];
     } //end fucntion ownerOf()
 }
