@@ -15,5 +15,6 @@ contract ZombieOwnership is ZombieAttack, ERC721 {
       ownerZombieCount[_to]++;
       ownerZombieCount[_from]--;
       zombieToOwner[_tokenId] = _to;
+      emit Transfer(_from, _to, _tokenId); //dApp will send out this signal via the JSON-RPC API for the front end
     }
 }
