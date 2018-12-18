@@ -1,7 +1,9 @@
 pragma solidity ^0.4.25;
 import "./ownable.sol";
+import "./safemath.sol";
 
 contract ZombieFactory is Ownable {
+  using SafeMath for uint256; //libraries allow for functions to attach to native data types
 
   event NewZombie(uint zombieId, string name, uint dna);
   //State variable will be permamently stored on-chain
