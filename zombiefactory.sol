@@ -39,7 +39,7 @@ contract ZombieFactory is Ownable {
                                                                                     //'level' starts at '1'. uint32(now + cooldownTime) gives the unix time of 1 day from when the function is called.
 
     zombieToOwner[id] = msg.sender; //Assigns user based on global zombie id that is simply a global tally whenever a zombie is created.
-    ownerZombieCount[msg.sender]++; //Increases user's zombie tally
+    ownerZombieCount[msg.sender] = ownerZombieCount[msg.sender].add(1); //Increases user's zombie tally
 
     //Fires event NewZombie
     NewZombie(id, _name, _dna);
