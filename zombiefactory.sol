@@ -3,6 +3,8 @@ import "./ownable.sol";
 import "./safemath.sol";
 
 contract ZombieFactory is Ownable {
+  using SafeMath16 for uint16;
+  using SafeMath32 for uint32;
   using SafeMath for uint256; //libraries allow for functions to attach to native data types
 
   event NewZombie(uint zombieId, string name, uint dna);
