@@ -2,6 +2,9 @@ pragma solidity ^0.4.25;
 import "./zombieattack.sol";
 import "./erc721.sol";
 
+/// @title ERC721 Ownership - Balance and Ownership Lookups to Transfer
+/// @author Loom.io and myself
+/// @notice Returns balances of and approves transfers between ERC721 tokens
 contract ZombieOwnership is ZombieAttack, ERC721 {
 
     mapping (uint => address) zombieApprovals;
