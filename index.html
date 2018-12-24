@@ -10,6 +10,13 @@
 
   <body>
     <script> //This script checks if user has MetaMask installed by checking if browser has the global JavaScript object 'web3'
+      var cryptoZombies;
+
+      function startApp() {
+        var cryptoZombiesAddress = "YOUR_CONTRACT_ADDRESS";
+        cryptoZombies = new web3js.eth.Contract(cryptoZombiesABI, cryptoZombiesAddress);
+      } //end function startApp()
+
       window.addEventListener('load', function() {
 
       // Checking if Web3 has been injected by the browser (Mist/MetaMask)
