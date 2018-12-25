@@ -17,6 +17,10 @@
         cryptoZombies = new web3js.eth.Contract(cryptoZombiesABI, cryptoZombiesAddress);
       } //end function startApp()
 
+      function getZombieDetails(id) { //tells Web3 provider node to return the 'zombie' with index 'id' from "Zombie[] public zombies" in zombiefactory.sol
+        return cryptoZombies.methods.zombies(id).call()
+      } //end function getZombieDetails()
+
       window.addEventListener('load', function() {
 
       // Checking if Web3 has been injected by the browser (Mist/MetaMask)
