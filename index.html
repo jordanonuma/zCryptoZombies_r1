@@ -9,6 +9,8 @@
   </head>
 
   <body>
+    <div id="zombies"></div>
+
     <script> //This script checks if user has MetaMask installed by checking if browser has the global JavaScript object 'web3'
       var cryptoZombies;
       var userAccount;
@@ -25,8 +27,28 @@
             .then(displayZombies);
           } //end if()
         }, 100);
-
       } //end function startApp()
+
+      function displayZombies(ids) {
+        $("#zombies").empty();  //empties the zombie <div>
+        for id of (ids){
+          getZombieDetails(id)
+          .then(function(zombie) {
+            // Using ES6's "template literals" to inject variables into the HTML.
+            // Append each one to our #zombies div
+            $("#zombies").append(`<div class="zombie">
+              <ul>
+                <li>Name: ${zombie.name}</li>
+                <li>DNA: ${zombie.dna}</li>
+                <li>Level: ${zombie.level}</li>
+                <li>Wins: ${zombie.winCount}</li>
+                <li>Losses: ${zombie.lossCount}</li>
+                <li>Ready Time: ${zombie.readyTime}</li>
+              </ul>
+            </div>`);
+          });
+        } //end for(){}
+      } //end function displayZombies()
 
       function getZombieDetails(id) { //tells Web3 provider node to return the 'zombie' with index 'id' from "Zombie[] public zombies" in zombiefactory.sol
         return cryptoZombies.methods.zombies(id).call()
