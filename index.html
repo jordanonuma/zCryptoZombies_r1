@@ -87,6 +87,13 @@
         });
       } //end function feedOnKitty()
 
+      function levelUp(uint zombieId) external payable {
+        $("#txStatus").text("Leveling up your zombie...");
+
+        require(msg.value == levelUpFee);
+        zombies[_zombieId].level++;
+      } //end function levelUp()
+
       function getZombieDetails(id) { //tells Web3 provider node to return the 'zombie' with index 'id' from "Zombie[] public zombies" in zombiefactory.sol
         return cryptoZombies.methods.zombies(id).call()
       } //end function getZombieDetails()
