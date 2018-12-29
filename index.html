@@ -87,9 +87,8 @@
         });
       } //end function feedOnKitty()
 
-      function levelUp(uint zombieId) external payable {
+      function levelUp(zombieId) {
         $("#txStatus").text("Leveling up your zombie...");
-
         require(msg.value == levelUpFee);
         zombies[_zombieId].level++;
       } //end function levelUp()
