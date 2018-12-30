@@ -28,6 +28,13 @@
             .then(displayZombies);
           } //end if()
         }, 100);
+
+        //Listens for Soliidty code 'event Transfer(address indexed _from, address indexed _to, uint256 _tokenId);'
+        cryptoZombies.events.Transfer({ filter: { _to: userAccount } })
+        .on("data", function(event) {
+          let data = event.returnValues;
+          getZombiesByOwner(userAccount).then(displayZombies);
+        }).on("error", console.error);
       } //end function startApp()
 
       function displayZombies(ids) {
