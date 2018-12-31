@@ -4,6 +4,7 @@ import "./ZB/ZBGameMode.sol";
 
 contract ExampleGame is ZBGameMode  {
 
-    // Starting here
-
-}
+  function beforeMatchStart(bytes serializedGameState) external {
+      
+  } //end function beforeMatchStart()
+} //end contract ExampleGame {}
