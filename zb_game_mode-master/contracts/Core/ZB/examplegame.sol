@@ -48,5 +48,12 @@ contract ExampleGame is ZBGameMode  {
     changes.changePlayerCurrentGoo(Player.Player2, 3);
     changes.changePlayerMaxGooVials(Player.Player1, 8); //default is 10
     changes.changePlayerMaxGooVials(Player.Player2, 8); //default is 10
+
+    for (uint i = 0; i < gameState.playerStates.length; i++) { //loop that goes through player in 'gameState'
+      //For each player, an array of CardInstances called 'newCards' is created. Length of array is 'gameState.playerStates[i].cardsInDeck.length'
+      CardInstance[] memory newCards = new CardInstance[](gameState.playerStates[i].cardsInDeck.length);
+      // ^struct/array of GameState[] called 'gameState' references PlayerState[] which references CardInstance[] which has the 'cardsInDeck' property. (source: ZBGameMode.sol)
+      uint cardCount = 0;
+    } //end for (){}
   } //end function beforeMatchStart()
 } //end contract ExampleGame {}
