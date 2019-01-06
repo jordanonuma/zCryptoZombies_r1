@@ -54,6 +54,13 @@ contract ExampleGame is ZBGameMode  {
       CardInstance[] memory newCards = new CardInstance[](gameState.playerStates[i].cardsInDeck.length);
       // ^struct/array of GameState[] called 'gameState' references PlayerState[] which references CardInstance[] which has the 'cardsInDeck' property. (source: ZBGameMode.sol)
       uint cardCount = 0;
-    } //end for (){}
+
+      for (uint j = 0; j < gameState.playerStates[i].cardsInDeck.length; j++) {
+          if (isLegalCard(gameState.playerStates[i].cardsinDeck[j])) {
+              newCards[cardCount] = gameState.playerStates[i].cardsInDeck[j];
+              cardCount++;
+          } //end if () {}
+      } //end for (gameState.playerStates[i].cardsinDeck.length) {}
+    } //end for (gameState.playerStates.length){}
   } //end function beforeMatchStart()
 } //end contract ExampleGame {}
