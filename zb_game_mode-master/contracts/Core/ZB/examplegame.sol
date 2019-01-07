@@ -63,4 +63,8 @@ contract ExampleGame is ZBGameMode  {
       } //end for (gameState.playerStates[i].cardsinDeck.length) {}
     } //end for (gameState.playerStates.length){}
   } //end function beforeMatchStart()
+
+  function isLegalCard(CardInstance card) internal view returns (bool) {
+    return (!bannedCards[card.mouldName]); //returns true if card is not in the banned array
+  } //end function isLegalCard()
 } //end contract ExampleGame {}
