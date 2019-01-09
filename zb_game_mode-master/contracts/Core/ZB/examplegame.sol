@@ -64,6 +64,7 @@ contract ExampleGame is ZBGameMode  {
 
       changes.changePlayerCardsInDeck(Player(i), newCards, cardCount); //swap out array of old cards for new, approved cards 'newCards'
     } //end for (gameState.playerStates.length){}
+    emit.changes(); //sends local data stored in memory 'changes' for front end use
   } //end function beforeMatchStart()
 
   function isLegalCard(CardInstance card) internal view returns (bool) {
