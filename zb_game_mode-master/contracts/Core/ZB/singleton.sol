@@ -30,6 +30,4 @@ contract Singleton is ZBGameMode  {
 
         changes.emit();
     } //end function beforeMatchStart()
-
-
 } //end contract Singleton {}
