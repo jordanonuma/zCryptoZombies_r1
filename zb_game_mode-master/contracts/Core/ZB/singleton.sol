@@ -26,7 +26,7 @@ contract Singleton is ZBGameMode  {
                 } //end for ()
 
                 if (!cardAlreadyInDeck) {
-                    newCards[cardCount] = gameState.playerStates[i].cardsInDeck[j];
+                    newCards[cardCount] = gameState.playerStates[i].cardsInDeck[j]; //this newCards[] array will be compared for each mouldname in the k loop
                     cardCount++;
                 } //end if (for each card)
             } //end for (all cards in deck)
