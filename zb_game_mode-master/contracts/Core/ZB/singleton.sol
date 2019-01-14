@@ -2,7 +2,6 @@ pragma solidity 0.4.25;
 
 import "./ZB/ZBGameMode.sol";
 
-// 1. Change the name of this contract
 contract Singleton is ZBGameMode  {
 
     function beforeMatchStart(bytes serializedGameState) external {
