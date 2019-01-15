@@ -14,8 +14,8 @@ contract ZombiePile is ZBGameMode  {
 
         CardInstance[] memory player1Cards = new CardInstance[](gameState.playerStates[0].cardsInDeck.length);
         CardInstance[] memory player2Cards = new CardInstance[](gameState.playerStates[1].cardsinDeck.length);
-        uint player1CardsCount = 0;
-        uint player2CardsCount = 0;
+        uint player1CardCount = 0;
+        uint player2CardCount = 0;
 
         for (uint i = 0; i < gameState.playerStates.length; i++) {
 
