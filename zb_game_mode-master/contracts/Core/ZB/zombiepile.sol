@@ -25,7 +25,7 @@ contract ZombiePile is ZBGameMode  {
               if (player1CardCount + 1 > gameState.playerStates[0].cardsInDeck.length) {
                 rand = 1;
               } //end if (player1 has too many cards)
-              else (player2CardCount + 1 > gameState.playerStates[1].cardsInDeck.length) {
+              elseif (player2CardCount + 1 > gameState.playerStates[1].cardsInDeck.length) {
                 rand = 0;
               } //end elseif (player2 has too many cards)
               if (rand == 0) {
