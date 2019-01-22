@@ -1,5 +1,6 @@
 pragma solidity ^0.4.25;
 import "./ERC721XToken.sol";
+import "./Ownable.sol";
 
 Contract ZombieCard is ERC721XToken {
   mapping (uint => uint) internal tokenIdToIndividualSupply;
