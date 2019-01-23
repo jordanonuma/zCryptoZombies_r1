@@ -4,6 +4,7 @@ import "./Ownable.sol";
 
 Contract ZombieCard is ERC721XToken {
   mapping (uint => uint) internal tokenIdToIndividualSupply;
+  event TokenAwarded(uint indexed tokenId, address claimer, uint amount);
 
   function name() external view returns (string) {
       return "ZombieCard";
@@ -22,4 +23,8 @@ Contract ZombieCard is ERC721XToken {
     _mint(_tokenId, msg.sender, _supply);
     tokenIdToIndividualSupply[_tokenId] = _supply; //updates mapping to store the supply of the token
   } //end function mintToken()
+
+  function awardToken(uint _tokenId, address _to, uint _amount) public onlyOwner {
+    require(exists(_tokenId), "TokenID has not been minted");
+  } //end function awardToken()
 } //end Contract ZombieCard {}
