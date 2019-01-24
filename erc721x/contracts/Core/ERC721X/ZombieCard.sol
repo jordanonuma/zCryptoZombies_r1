@@ -26,5 +26,12 @@ Contract ZombieCard is ERC721XToken {
 
   function awardToken(uint _tokenId, address _to, uint _amount) public onlyOwner {
     require(exists(_tokenId), "TokenID has not been minted");
+
+    if (individualSupply[_tokenId] > 0) { //fixed supply and token is an NFT
+      require(_amount <= balanceOf(msg.sender, _tokenId), "Quantity greater than remaining cards");
+      _updateTokenBalance(msg.sender, _tokenId, _amount, ObjectLib.Operations.SUB); //reduces msg.sender's (game server) balance of _tokenId by _amount
+    } //end if (token is NFT)
+    _updateTokenBalance(_to, _tokenId, _amount, ObjectLib.Operations.ADD);
+    emit TokenAwarded(_tokenId, _to, _amount);
   } //end function awardToken()
 } //end Contract ZombieCard {}
