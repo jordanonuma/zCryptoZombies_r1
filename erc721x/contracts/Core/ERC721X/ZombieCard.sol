@@ -4,6 +4,9 @@ import "./Ownable.sol";
 
 Contract ZombieCard is ERC721XToken {
   mapping (uint => uint) internal tokenIdToIndividualSupply;
+  mapping(uint => uint) internal nftTokenIdToMouldId; //stores old fungible token ID before the NFT ID was created
+  uint nftTokenIdIndex = 1000000;
+
   event TokenAwarded(uint indexed tokenId, address claimer, uint amount);
 
   function name() external view returns (string) {
@@ -34,4 +37,9 @@ Contract ZombieCard is ERC721XToken {
     _updateTokenBalance(_to, _tokenId, _amount, ObjectLib.Operations.ADD);
     emit TokenAwarded(_tokenId, _to, _amount);
   } //end function awardToken()
+
+  function convertToNFT(uint _tokenId, uint _amount) public {
+    require(tokenType[_tokenId] == FT); //want to make sure token is an FT. Code from ERC721XToken.sol
+    require(_amount <= balanceOf(msg.sender, _tokenId), "You do not own enough tokens"); //checks sender has enough tokens
+  } //end function convertToNFT()
 } //end Contract ZombieCard {}
