@@ -41,5 +41,12 @@ Contract ZombieCard is ERC721XToken {
   function convertToNFT(uint _tokenId, uint _amount) public {
     require(tokenType[_tokenId] == FT); //want to make sure token is an FT. Code from ERC721XToken.sol
     require(_amount <= balanceOf(msg.sender, _tokenId), "You do not own enough tokens"); //checks sender has enough tokens
+
+    _updateTokenBalance(msg.sender, _tokenId, _amount, ObjectLib.Operations.SUB);
+    for(uint i = 0; i < _amount; i++) {
+        _mint(nftTokenIdIndex, msg.sender); //this is the NFT version of _mint(). Creates a new NFT with a unique ID and assigns it to the same (previously FT) owner
+        nftTokenIdToMouldId[nftTokenIdIndex] = _tokenId; //remembers NFT's original _tokenId to know what mould this card came from
+        nftTokenIdIndex++;
+    } //end for(each token to convert to NFT)
   } //end function convertToNFT()
 } //end Contract ZombieCard {}
