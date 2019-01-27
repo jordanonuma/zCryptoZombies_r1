@@ -55,6 +55,6 @@ Contract ZombieCard is ERC721XToken {
     require(ownerOf(_tokenId) == msg.sender, "You do not own this token");
     _updateTokenBalance(msg.sender, _tokenId, 0, ObjectLib.Operations.REPLACE); //updates NFT balance to 0
     _updateTokenBalance(msg.sender, nftTokenIdtoMouldId[_tokenId], 1, ObjectLib.Operations.ADD); //increments 1 to FT mould balance
-    
+    emit TransferWithQuantity(address(this), msg.sender, nftTokenIdToMouldId[_tokenId], 1); //emiting this event lets the user know transaction was successful
   } //end function convertToFT()
 } //end Contract ZombieCard {}
