@@ -21,6 +21,12 @@ Contract ZombieCard is ERC721XToken {
     return tokenIdToIndividualSupply[_tokenId];
   } //end function tokenIndividualSupply()
 
+  function batchMintTokens(uint[] _tokenIds, uint[] _tokenSupplies) external onlyOwner {
+    for(i=0; i < _tokenIds.length; i++) {
+        mintToken(_tokenIds[i], _tokenSupplies[i]);
+    } //end for(each token to be batch minted)
+  } //end function batchMintTokens()
+
   function mintToken(uint _tokenId, uint _supply) public onlyOwner {
     require(!exists(_tokenId), "Error: Tried to mint duplicate token id"); //restricts token to being minted only once
     _mint(_tokenId, msg.sender, _supply);
